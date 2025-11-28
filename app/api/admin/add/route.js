@@ -40,7 +40,6 @@ export async function POST(req) {
     );
 
   } catch (error) {
-    console.log("Error:", error);
     return new Response(
       JSON.stringify({ message: "Internal Server Error", success: false }),
       { status: 500, headers: { "Content-Type": "application/json" } }
