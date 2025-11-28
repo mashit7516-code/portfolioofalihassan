@@ -1,26 +1,50 @@
 @import "tailwindcss";
+*{
+   font-family: "Poppins", sans-serif;  font-weight: 500;
+  font-style: normal;
+}
+.font-bold{
+  font-weight: 700;
+}
+body{
+  min-height: 100vh;
+  max-height: fit-content;
+  background-color:black;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+}
+::-webkit-scrollbar-thumb{
+  background-color: aqua;
+  border-radius: 8px;
+}
+::-webkit-scrollbar{
+  width: 10px;
+  background-color: black;
+  
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.cursor-default {
+  cursor: url('/cursor.svg') 16 16, auto;
+}
+.cursor-pointer {
+  cursor: url('/cursor-pointer.svg') 16 16, pointer;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Perspective for 3D effect */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Orbit container rotates in 3D */
+.orbit-3d {
+  transform-style: preserve-3d;
+  animation: orbit-3d-rotate 12s linear infinite;
+}
+
+@keyframes orbit-3d-rotate {
+  from {
+    transform: rotateX(20deg) rotateY(0deg);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  to {
+    transform: rotateX(20deg) rotateY(360deg);
+  }
 }
