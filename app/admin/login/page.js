@@ -32,7 +32,6 @@ function AdminLogin() {
         seterror(result.message);
       }
     } catch (err) {
-      console.error(err);
       seterror("Something went wrong. Try again!");
     }
   }

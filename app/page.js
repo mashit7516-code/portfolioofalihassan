@@ -15,13 +15,15 @@ export default function Home() {
   useEffect(() => {
     const handlegetprojects = async () => {
       try {
-        const r = await fetch("http://localhost:3000/api/admin/get", { method: "GET" })
+        const r = await fetch("/api/admin/get", { method: "GET" })
         const response = await r.json();
-        setprojects(response.data);
-        console.log(response.data)
+        if(response.success){
+          setprojects(response.data);
+        }else{
+          setprojects([]);
+        }
       } catch (error) {
-        toast.error("Error fetching projects:", error);
-        console.log("Error fetching projects:", error);
+        setprojects([]);
       }
     }
     handlegetprojects();
@@ -103,7 +105,7 @@ export default function Home() {
               <span>Want to see my Projects!</span>
               <Link href={"#projects"} className="w-fit mt-1 px-2 py-1 rounded bg-[#00ffff] hover:bg-[#00cccc] scroll-smooth text-black transition">Projects</Link>
               <span className="ml-4 mt-2">Download my CV</span>
-              <a href={"/"} download={"ALI-HASSAN-CV.pdf"} className="w-fit mt-2 px-2 py-1 rounded bg-[#00ffff] hover:bg-[#00cccc] text-black transition">Download</a>
+              <a href={"/Ali_Hassan_CV.pdf"} download={"ALI-HASSAN-CV.pdf"} className="w-fit mt-2 px-2 py-1 rounded bg-[#00ffff] hover:bg-[#00cccc] text-black transition">Download</a>
 
             </div>
           </div>
@@ -153,7 +155,8 @@ export default function Home() {
       <section id="projects" className="flex scroll-smooth justify-center items-center flex-col">
         <div className="w-[95vw] rounded-lg bg-[rgba(0,0,0,0.5)] border border-[#00ffff] shadow shadow-[#00ffff] ">
           <h1 className="text-4xl text-white font-bold text-center mb-8 mt-8">Projects</h1>
-          <div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
+          <div>
+            {projects.length == 0 ? <h2 className="text-white text-center mb-4">No Projects to Show</h2>:<div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
             {projects.map((project) => (
               <div key={project._id} className="border border-gray-700  rounded-lg p-4 my-4 w-[80vw] md:w-[20vw]">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -168,7 +171,9 @@ export default function Home() {
               </div>
             ))
             }
+          </div>}
           </div>
+          
         </div>
 
       </section>

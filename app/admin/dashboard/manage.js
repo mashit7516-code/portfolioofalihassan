@@ -15,7 +15,7 @@ function AdminPanel() {
   const handleaddproject = async (e) => {
     e.preventDefault();
     try {
-      const r = await fetch("http://localhost:3000/api/admin/add", {
+      const r = await fetch("/api/admin/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -30,10 +30,8 @@ function AdminPanel() {
       const response = await r.json();
       if (!response.success) {
         toast.error("Failed to add project:", response.message);
-        console.log("error" + response.message)
       } else {
         toast.success("Project Added Successfully");
-        console.log("success")
         setprojects((prev) => [
           ...prev,
           { title, description, imageURL, projectURL }
@@ -46,7 +44,6 @@ function AdminPanel() {
       }
     } catch (error) {
       toast.error("Error adding project:", error);
-      console.log("Error adding project:", error);
     }
   }
 
@@ -63,28 +60,23 @@ function AdminPanel() {
       const response = await r.json();
       if (!response.success) {
         toast.error("Failed to delete project:", response.message);
-        console.log("error" + response.message)
       } else {
         toast.success("Project Deleted Successfully");
-        console.log("success")
         setprojects((prev) => prev.filter((p) => p._id !== id));
       }
     } catch (error) {
       toast.error("Error deleting project:", error);
-      console.log("Error deleting project:", error);
     }
   }
 
   useEffect(() => {
     const handlegetprojects = async () => {
       try {
-        const r = await fetch("http://localhost:3000/api/admin/get", { method: "GET" })
+        const r = await fetch("/api/admin/get", { method: "GET" })
         const response = await r.json();
         setprojects(response.data);
-        console.log(response.data)
       } catch (error) {
         toast.error("Error fetching projects:", error);
-        console.log("Error fetching projects:", error);
       }
     }
     handlegetprojects();
@@ -103,7 +95,6 @@ function AdminPanel() {
           toast.error("An error occured!")
         }
       } catch (error) {
-        console.error(error)
         toast.error("Internal Server Error")
       }
 
@@ -115,7 +106,7 @@ function AdminPanel() {
 
   const handleeditproject = async (id, title, description, imageURL, projectURL) => {
     try {
-      const r = await fetch("http://localhost:3000/api/admin/delete", {
+      const r = await fetch("/api/admin/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
@@ -126,10 +117,8 @@ function AdminPanel() {
       const response = await r.json();
       if (!response.success) {
         toast.error("An error occured!");
-        console.log("error" + response.message)
       } else {
         toast.success("Project is ready to edit!");
-        console.log("success")
         settitle(title)
         setdescription(description)
         setimageURL(imageURL)
@@ -138,7 +127,6 @@ function AdminPanel() {
       }
     } catch (error) {
       toast.error("Error editing project:", error);
-      console.log("Error editing project:", error);
     }
   }
 
@@ -157,11 +145,9 @@ function AdminPanel() {
         toast.success("Message Deleted!")
         setmessages((prev) => prev.filter((p) => p._id !== id));
       } else {
-        console.log(result.message)
         toast.error("An Error Occured!")
       }
     } catch (error) {
-      console.error(error)
       toast.error("An error occured!")
     }
   }

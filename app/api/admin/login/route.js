@@ -11,7 +11,6 @@ export async function POST(req) {
     await connectDB();
 
     const admindetail = await admin.findOne({ adminname });
-    console.log(admindetail)
     if (!admindetail) {
       return new Response(
         JSON.stringify({ message: "User Name is Wrong!", success: false }),
@@ -43,7 +42,6 @@ export async function POST(req) {
       }
     );
   } catch (error) {
-    console.log("Error during admin login:", error);
     return new Response(
       JSON.stringify({ message: "Internal Server Error" }),
       { status: 500, headers: { "Content-Type": "application/json" } }

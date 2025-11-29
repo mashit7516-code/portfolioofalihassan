@@ -17,7 +17,6 @@ export async function GET() {
 
         }
     } catch (error) {
-        console.log(error)
         return new Response(
             JSON.stringify({ message: "An Internal Server Error Occured!", success: false }),
             { status: 500 }

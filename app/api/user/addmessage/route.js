@@ -7,7 +7,6 @@ export async function POST(req) {
     const { name, email, content } = body;
 
     await connectDB();
-    console.log("Sachema Keys:",Object.keys(user.schema.paths))
 
     if (!name || !email || !content) {
       return new Response(
@@ -15,13 +14,11 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-console.log(content)
 const new_user_message = {
       name,
       email,
       content,
     }
-    console.log(new_user_message)
     await user.create(new_user_message);
 
     return new Response(
@@ -30,7 +27,6 @@ const new_user_message = {
     );
 
   } catch (error) {
-    console.error(error)
     return new Response(
       JSON.stringify({ message: "Internal Server Error!", success: false }),
       { status: 500 }
