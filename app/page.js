@@ -83,19 +83,19 @@ export default function Home() {
               items-center w-[50vw] md:w-fit gap-4 md:gap-6 transition-all duration-300`}
             >
               <ul className='md:flex flex justify-center items-center flex-col gap-5  md:flex-row'>
-                <Link onClick={() => setOpen(!open)} href="#home"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Home</li></Link>
+                <Link onClick={() => setOpen(false)} href="#home"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Home</li></Link>
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
-                <Link onClick={() => setOpen(!open)} href="#projects"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Projects</li></Link>
+                <Link onClick={() => setOpen(false)} href="#projects"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Projects</li></Link>
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
-                <Link onClick={() => setOpen(!open)} href="#about"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>About</li></Link>
+                <Link onClick={() => setOpen(false)} href="#about"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>About</li></Link>
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
-                <Link onClick={() => setOpen(!open)} href="#contact"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Contact</li></Link>
+                <Link onClick={() => setOpen(false)} href="#contact"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Contact</li></Link>
               </ul>
             </div>
           </div>
         </div>
       </section>
-      <section id="home" className=" scroll-smooth flex flex-row md:flex-col justify-center items-center   text-white px-4">
+      <section onClick={()=>setOpen(false)} id="home" className=" scroll-smooth flex flex-row md:flex-col justify-center items-center   text-white px-4">
         <div className="bg-[rgba(0,0,0,0.5)] rounded-lg mt-30 md:mt-40 shadow flex flex-col md:flex-row gap-10 shadow-[#00ffff]">
           <div className="flex gap-6 px-6 py-4 md:w-[50%] flex-col">
             <span>Hi, I am</span>
@@ -118,7 +118,7 @@ export default function Home() {
         </div>
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section id="about" className=" scroll-smooth flex justify-center items-center text-white px-4">
+      <section onClick={()=>setOpen(false)} id="about" className=" scroll-smooth flex justify-center items-center text-white px-4">
         <div className="flex flex-col my-10 rounded-lg  bg-black shadow shadow-[#00ffff] w-[95vw] h-[80%]">
           <h1 className="text-4xl font-bold text-center mb-8 mt-8">About Me</h1>
 
@@ -152,11 +152,11 @@ export default function Home() {
         </div>
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section id="projects" className="flex scroll-smooth justify-center items-center flex-col">
+      <section onClick={()=>setOpen(false)} id="projects" className="flex scroll-smooth justify-center items-center flex-col">
         <div className="w-[95vw] rounded-lg bg-[rgba(0,0,0,0.5)] border border-[#00ffff] shadow shadow-[#00ffff] ">
           <h1 className="text-4xl text-white font-bold text-center mb-8 mt-8">Projects</h1>
           <div>
-            {projects.length == 0 ? <h2 className="text-white text-center mb-4">No Projects to Show</h2>:<div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
+            {projects.length == 0 ? <h2 className="text-white text-center mb-4">If you are  not able to see projects. Reload the page!</h2>:<div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
             {projects.map((project) => (
               <div key={project._id} className="border border-gray-700  rounded-lg p-4 my-4 w-[80vw] md:w-[20vw]">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
@@ -178,7 +178,7 @@ export default function Home() {
 
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section id="contact" className="mb-4  flex flex-col justify-center items-center scroll-smooth">
+      <section onClick={()=>setOpen(false)} id="contact" className="mb-4  flex flex-col justify-center items-center scroll-smooth">
         <div className="flex bg-[rgba(0,0,0,0.5)] rounded-lg md:flex-row flex-col w-[95vw] border border-[#00ffff] shadow shadow-[#00ffff]">
           <h1 className="text-4xl text-white font-bold text-center mb-8 mt-8">Contact</h1>
 
@@ -195,16 +195,16 @@ export default function Home() {
             <form onSubmit={handleaddmessage} className="w-full mb-4 flex flex-col justify-center items-center">
               <div className="flex flex-col justify-center items-center gap-2 w-full">
                 <label className="font-semibold text-xl" htmlFor="name">Name:</label>
-                <input type="text" value={name || ""} onChange={(e) => setname(e.target.value)} placeholder="Enter Your Name" required className="bg-white w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
+                <input type="text" value={name || ""} onChange={(e) => setname(e.target.value)} placeholder="Enter Your Name" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
               <div className="flex flex-col justify-center items-center gap-2 w-full">
                 <label className="font-semibold text-xl" htmlFor="name">Email:</label>
-                <input type="Email" value={email || ""} onChange={(e) => setemail(e.target.value)} placeholder="Enter Your Email" required className="bg-white w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
+                <input type="Email" value={email || ""} onChange={(e) => setemail(e.target.value)} placeholder="Enter Your Email" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
 
               <div className="flex flex-col justify-center items-center gap-2 w-full">
-                <label className="font-semibold text-xl" htmlFor="name">Email:</label>
-                <textarea type="message" value={content || ""} onChange={(e) => setcontent(e.target.value)} placeholder="Enter Your Message" required className="bg-white w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
+                <label className="font-semibold text-xl" htmlFor="name">Message:</label>
+                <textarea type="message" value={content || ""} onChange={(e) => setcontent(e.target.value)} placeholder="Enter Your Message" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
               <button className="my-4 bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit">Submit</button>
             </form>
