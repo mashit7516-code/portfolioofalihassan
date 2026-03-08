@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin
+Disallow: /adminpanel
+Disallow: /login
+
+Sitemap: https://portfolioofalihassan.vercel.app/sitemap.xml
