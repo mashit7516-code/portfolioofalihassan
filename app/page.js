@@ -11,6 +11,20 @@ export default function Home() {
   const [name, setname] = useState("")
   const [email, setemail] = useState("")
   const [content, setcontent] = useState("")
+  const [popup, setpopup] = useState(false)
+
+
+  useEffect(() => {
+    if (popup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [popup]);
 
   useEffect(() => {
     const handlegetprojects = async () => {
@@ -51,6 +65,7 @@ export default function Home() {
         toast.success("Message Sent Successfully!");
       } else {
         toast.error(result.message);
+        setpopup(false)
       }
 
     } catch (error) {
@@ -78,7 +93,7 @@ export default function Home() {
             </button>
             <div
               className={`${open ? "flex" : "hidden"
-                } flex-col md:flex md:flex-row md:static absolute top-20 right-0 md:top-0 md:right-auto 
+                } flex-col md:flex md:flex-row md:static absolute top-20 right-0 md:top-0 md:right-auto z-10
               bg-black border-2 md:border-none border-[#00ffff]  md:bg-transparent p-4 md:p-0 rounded-2xl md:rounded-none 
               items-center w-[50vw] md:w-fit gap-4 md:gap-6 transition-all duration-300`}
             >
@@ -99,7 +114,8 @@ export default function Home() {
         <div className="bg-[rgba(0,0,0,0.5)] rounded-lg mt-30 md:mt-40 shadow flex flex-col md:flex-row gap-10 shadow-[#00ffff]">
           <div className="flex gap-6 px-6 py-4 md:w-[50%] flex-col">
             <span>Hi, I am</span>
-            <span className="text-6xl font-bold ">ALI HASSAN</span>
+            <span className="text-3xl font-bold ">ALI HASSAN</span>
+            <span className="font-bold text-4xl">Looking for a Professional Website Developer ? Your quest is end now!</span>
             <span>Motivated and detail-oriented MERN Stack Developer with strong foundation in building responsive, efficient, and modren web applications.</span>
             <div className="flex flex-col">
               <span>Want to see my Projects!</span>
@@ -180,9 +196,9 @@ export default function Home() {
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
       <section onClick={()=>setOpen(false)} id="contact" className="mb-4  flex flex-col justify-center items-center scroll-smooth">
         <div className="flex bg-[rgba(0,0,0,0.5)] rounded-lg md:flex-row flex-col w-[95vw] border border-[#00ffff] shadow shadow-[#00ffff]">
-          <h1 className="text-4xl text-white font-bold text-center mb-8 mt-8">Contact</h1>
+          <h1 className="text-4xl text-white font-bold relative md:left-[40%] text-center mb-8 mt-8">Contact</h1>
 
-          <div className="text-white w-full flex flex-col justify-center items-center md:w-[50%] px-4 py-8">
+          <div className={` ${popup ? "blur-xs" : ""} text-white w-full flex flex-col justify-center items-center md:w-[50%] px-4 py-8`}>
             <span className="font-semibold text-lg">Contact me on <a className="text-blue-700 flex justify-center items-center gap-2 cursor-pointer" href="mailto:ali374hassan@gmail.com"><Image height={20} width={20} src={"/mail.svg"} alt="mail" /><span> Email:ali374hassan@gmail.com</span></a></span>
             <div className="flex flex-col justify-center items-center gap-2">
               <span className="font-semibold text-lg">My Social Media Accounts </span>
@@ -190,7 +206,14 @@ export default function Home() {
               <a target="_blank" className=" flex justify-center items-center gap-2 cursor-pointer" href="https://vt.tiktok.com/ZSfxwACv5"><Image height={20} width={20} src={"/tiktok.svg"} alt="mail" /><span>@alihassan...374 </span></a>
             </div>
           </div>
-          <div className="flex flex-col justify-center items-center w-full text-white md:w-[50%]">
+                    <div className={` ${popup ? "flex": "hidden"} text-white md:w-[35%] z-10 flex flex-col gap-4 justify-center md:self-center items-center p-6 relative md:left-[0%] bg-black border-2 border-[#00ffff] rounded-xl h-[70%] md:top-[40%] `}>
+            <span className="text-white text-lg self-end-safe cursor-pointer hover:text-[#00ffff] active:text-[#00ffff] active:scale-95 w-[10%]" onClick={()=>setpopup(false)}>✗</span>
+            <span className="font-bold text-2xl" >Thank You!</span>
+            <span className="text-lg">I am very grateful to you for your message. You will receive my prompt reply soon on your email {email || ""}</span>
+            <button className="bg-[#00ffff] rounded-3xl cursor-pointer active:scale-90 p-2 text-black font-semibold " onClick={()=>setpopup(false)}>Welcome
+            </button>
+          </div>
+          <div className={`${popup ? "blur-xs":""} flex flex-col justify-center items-center w-full text-white md:w-[50%] mt-10`}>
             <h1 className="font-bold text-2xl mt-6">Send me your message:</h1>
             <form onSubmit={handleaddmessage} className="w-full mb-4 flex flex-col justify-center items-center">
               <div className="flex flex-col justify-center items-center gap-2 w-full">
@@ -206,9 +229,10 @@ export default function Home() {
                 <label className="font-semibold text-xl" htmlFor="name">Message:</label>
                 <textarea type="message" value={content || ""} onChange={(e) => setcontent(e.target.value)} placeholder="Enter Your Message" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
-              <button className="my-4 bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit">Submit</button>
+              <button className="my-4 bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit" onClick={()=>setpopup(true)} >Submit</button>
             </form>
           </div>
+
         </div>
       </section>
       <ToastContainer
