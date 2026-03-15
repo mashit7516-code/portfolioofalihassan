@@ -229,7 +229,7 @@ export default function Home() {
                 <label className="font-semibold text-xl" htmlFor="name">Message:</label>
                 <textarea type="message" value={content || ""} onChange={(e) => setcontent(e.target.value)} placeholder="Enter Your Message" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
-              <button className="my-4 bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit" onClick={()=>setpopup(true)} >Submit</button>
+              <button disabled={!name || !email || !content} className="my-4  disabled:bg-[#22abab87] bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit" onClick={()=>setpopup(true)} >Submit</button>
             </form>
           </div>
 
