@@ -14,6 +14,7 @@ export default function Home() {
   const [popup, setpopup] = useState(false)
 
 
+
   useEffect(() => {
     if (popup) {
       document.body.style.overflow = "hidden";
@@ -31,9 +32,9 @@ export default function Home() {
       try {
         const r = await fetch("/api/admin/get", { method: "GET" })
         const response = await r.json();
-        if(response.success){
+        if (response.success) {
           setprojects(response.data);
-        }else{
+        } else {
           setprojects([]);
         }
       } catch (error) {
@@ -102,6 +103,8 @@ export default function Home() {
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
                 <Link onClick={() => setOpen(false)} href="#projects"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Projects</li></Link>
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
+                <Link onClick={() => setOpen(false)} href="#services"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Services</li></Link>
+                <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
                 <Link onClick={() => setOpen(false)} href="#about"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>About</li></Link>
                 <div className='w-[50vw] block md:hidden h-1 bg-[#00ffff]'></div>
                 <Link onClick={() => setOpen(false)} href="#contact"><li className='hover:bg-[#00ffff] hover:font-black rounded-full px-1 py-0.5 hover:text-black text-white  hover:scale-110 active:bg-[#00ffff] active:scale-95 cursor-pointer'>Contact</li></Link>
@@ -110,7 +113,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section onClick={()=>setOpen(false)} id="home" className=" scroll-smooth flex flex-row md:flex-col justify-center items-center   text-white px-4">
+      <section onClick={() => setOpen(false)} id="home" className=" scroll-smooth flex flex-row md:flex-col justify-center items-center   text-white px-4">
         <div className="bg-[rgba(0,0,0,0.5)] rounded-lg mt-30 md:mt-40 shadow flex flex-col md:flex-row gap-10 shadow-[#00ffff]">
           <div className="flex gap-6 px-6 py-4 md:w-[50%] flex-col">
             <span>Hi, I am</span>
@@ -134,7 +137,7 @@ export default function Home() {
         </div>
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section onClick={()=>setOpen(false)} id="about" className=" scroll-smooth flex justify-center items-center text-white px-4">
+      <section onClick={() => setOpen(false)} id="about" className=" scroll-smooth flex justify-center items-center text-white px-4">
         <div className="flex flex-col my-10 rounded-lg  bg-black shadow shadow-[#00ffff] w-[95vw] h-[80%]">
           <h1 className="text-4xl font-bold text-center mb-8 mt-8">About Me</h1>
 
@@ -168,33 +171,154 @@ export default function Home() {
         </div>
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section onClick={()=>setOpen(false)} id="projects" className="flex scroll-smooth justify-center items-center flex-col">
+      <section onClick={() => setOpen(false)} id="projects" className="flex scroll-smooth justify-center items-center flex-col">
         <div className="w-[95vw] rounded-lg bg-[rgba(0,0,0,0.5)] border border-[#00ffff] shadow shadow-[#00ffff] ">
           <h1 className="text-4xl text-white font-bold text-center mb-8 mt-8">Projects</h1>
           <div>
-            {projects.length == 0 ? <h2 className="text-white text-center mb-4">If you are  not able to see projects. Reload the page!</h2>:<div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
-            {projects.map((project) => (
-              <div key={project._id} className="border border-gray-700  rounded-lg p-4 my-4 w-[80vw] md:w-[20vw]">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="mb-2">{project.description}</p>
-                <Link href={project.projectURL} className="text-blue-500 cursor-pointer underline" target="_blank" rel="noopener noreferrer">
-                  Project Link
-                </Link>
-                <div className="mt-2">
-                  <img src={project.imageURL} alt={project.title} className="w-full h-auto rounded-lg" />
-                </div>
+            {projects.length == 0 ? <h2 className="text-white text-center mb-4">If you are  not able to see projects. Reload the page!</h2> : <div className='md:grid flex justify-center items-center flex-col px-4 md:grid-cols-3 gap-8  md:mx-auto mt-8 text-white mb-4 '>
+              {projects.map((project) => (
+                <div key={project._id} className="border border-gray-700  rounded-lg p-4 my-4 w-[80vw] md:w-[20vw]">
+                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <p className="mb-2">{project.description}</p>
+                  <Link href={project.projectURL} className="text-blue-500 cursor-pointer underline" target="_blank" rel="noopener noreferrer">
+                    Project Link
+                  </Link>
+                  <div className="mt-2">
+                    <img src={project.imageURL} alt={project.title} className="w-full h-auto rounded-lg" />
+                  </div>
 
-              </div>
-            ))
-            }
-          </div>}
+                </div>
+              ))
+              }
+            </div>}
           </div>
-          
+
         </div>
 
       </section>
       <div className="bg-[#00ffff] h-1 w-full my-4"></div>
-      <section onClick={()=>setOpen(false)} id="contact" className="mb-4  flex flex-col justify-center items-center scroll-smooth">
+      <section onClick={() => setOpen(false)} id="services" className="flex justify-center items-center flex-col text-white m-2">
+        <div className="text-4xl text-white font-bold text-center mb-8 mt-8">Services</div>
+        <div className="grid md:grid-cols-3 px-14
+         grid-cols-1 w-screen mx-6 my-2 gap-4">
+          <div id="service1" className="border-4 border-white p-2 rounded-xl w-fit">
+            <span className="text-xl font-bold ">Business Website Development
+            </span>
+            <div id="features">
+              <span className="font-bold text-[20px]">Features:</span>
+              <ul className="flex flex-col list-decimal px-8">
+                <li>Responsive Design</li>
+                <li>Contact Integration</li>
+                <li>Google Maps</li>
+                <li>Whatsapp Integration</li>
+              </ul>
+            </div>
+            <div className="why flex flex-col">
+              <span className="text-[20px] font-bold">Why choose it?</span>
+              <span className="text-[16px]">
+                Build a professional online presence that <span className="font-semibold">attract costomers</span> and grow your business 24/7.
+              </span>
+            </div>
+            <div className="further flex flex-col justify-center items-center">
+              For Further Details contact now:
+              <Link  href="#contact"  className="my-4   bg-[#00ffff] text-black px-1 py-1 rounded-lg w-fit font-bold text-xl  active:scale-95 cursor-pointer " >Contact</Link>
+            </div>
+          </div>
+          <div id="service2" className="border-4 border-white p-2 rounded-xl w-fit">
+            <span className="text-xl font-bold ">Ecommerce Website
+            </span>
+            <div id="features">
+              <span className="font-bold text-[20px]">Features:</span>
+              <ul className="flex flex-col list-decimal px-8">
+                <li>User Authentication</li>
+                <li>Payment Integration</li>
+                <li>Shopping Cart</li>
+                <li>Admin Dashboard</li>
+              </ul>
+            </div>
+            <div className="why flex flex-col">
+              <span className="text-[20px] font-bold">Why choose it?</span>
+              <span className="text-[16px]">
+                Turn Your Business into  <span className="font-semibold">Online Store</span> and start selling tp customers anytime,anywhere.
+              </span>
+            </div>
+            <div className="further flex flex-col justify-center items-center">
+              For Further Details contact now:
+              <Link  href="#contact"  className="my-4   bg-[#00ffff] text-black px-1 py-1 rounded-lg w-fit font-bold text-xl  active:scale-95 cursor-pointer " >Contact</Link>
+            </div>
+          </div>
+          <div id="service3" className="border-4 border-white p-2 rounded-xl w-fit">
+            <span className="text-xl font-bold ">Portfolio Website Development
+            </span>
+            <div id="features">
+              <span className="font-bold text-[20px]">Features:</span>
+              <ul className="flex flex-col list-decimal px-8">
+                <li>Project Showcase</li>
+                <li>Resume Download</li>
+                <li>Contact Form</li>
+                <li>Social Media Integration</li>
+              </ul>
+            </div>
+            <div className="why flex flex-col">
+              <span className="text-[20px] font-bold">Why choose it?</span>
+              <span className="text-[16px]">
+Stood out from the competition with a <span className="font-semibold">powerful portfolio</span> that builds trust and creates opportuniites.
+              </span>
+            </div>
+            <div className="further flex flex-col justify-center items-center">
+              For Further Details contact now:
+              <Link  href="#contact"  className="my-4   bg-[#00ffff] text-black px-1 py-1 rounded-lg w-fit font-bold text-xl  active:scale-95 cursor-pointer " >Contact</Link>
+            </div>
+          </div>
+          <div id="service4" className="border-4 border-white p-2 rounded-xl w-fit">
+            <span className="text-xl font-bold ">Website Redisgn and Performance Optamization </span>
+            <div id="features">
+              <span className="font-bold text-[20px]">Features:</span>
+              <ul className="flex flex-col list-decimal px-8">
+                <li>Modren UI/UX</li>
+                <li>Mobile Optimization</li>
+                <li>Speed Improvement</li>
+                <li>Bug Fixing</li>
+              </ul>
+            </div>
+            <div className="why flex flex-col">
+              <span className="text-[20px] font-bold">Why choose it?</span>
+              <span className="text-[16px]">
+                Transform your Outdated Website into a <span className="font-semibold">Modren fast, and high-converting</span> digital experience.
+              </span>
+            </div>
+            <div className="further flex flex-col justify-center items-center">
+              For Further Details contact now:
+              <Link  href="#contact"  className="my-4   bg-[#00ffff] text-black px-1 py-1 rounded-lg w-fit font-bold text-xl  active:scale-95 cursor-pointer " >Contact</Link>
+            </div>
+          </div>
+          <div id="service5" className="border-4 border-white p-2 rounded-xl w-fit">
+            <span className="text-xl font-bold ">Website Security and Vulnerability Assessment
+            </span>
+            <div id="features">
+              <span className="font-bold text-[20px]">Features:</span>
+              <ul className="flex flex-col list-decimal px-8">
+                <li>Security Scan</li>
+                <li>Basic Vulnerability Assessment</li>
+                <li>HTTPS and SSL Verification</li>
+                <li>Security Report</li>
+              </ul>
+            </div>
+            <div className="why flex flex-col">
+              <span className="text-[20px] font-bold">Why choose it?</span>
+              <span className="text-[16px]">
+                Protect Your Website, data and business reputation <span className="font-semibold">before hackers find weakness.</span> 
+              </span>
+            </div>
+            <div className="further flex flex-col justify-center items-center">
+              For Further Details contact now:
+              <Link  href="#contact"  className="my-4   bg-[#00ffff] text-black px-1 py-1 rounded-lg w-fit font-bold text-xl  active:scale-95 cursor-pointer " >Contact</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="bg-[#00ffff] h-1 w-full my-4"></div>
+      <section onClick={() => setOpen(false)} id="contact" className="mb-4  flex flex-col justify-center items-center scroll-smooth">
         <div className="flex bg-[rgba(0,0,0,0.5)] rounded-lg md:flex-row flex-col w-[95vw] border border-[#00ffff] shadow shadow-[#00ffff]">
           <h1 className="text-4xl text-white font-bold relative md:left-[40%] text-center mb-8 mt-8">Contact</h1>
 
@@ -206,14 +330,14 @@ export default function Home() {
               <a target="_blank" className=" flex justify-center items-center gap-2 cursor-pointer" href="https://vt.tiktok.com/ZSfxwACv5"><Image height={20} width={20} src={"/tiktok.svg"} alt="mail" /><span>@alihassan...374 </span></a>
             </div>
           </div>
-                    <div className={` ${popup ? "flex": "hidden"} text-white md:w-[35%] z-10 flex flex-col gap-4 justify-center md:self-center items-center p-6 relative md:left-[0%] bg-black border-2 border-[#00ffff] rounded-xl h-[70%] md:top-[40%] `}>
-            <span className="text-white text-lg self-end-safe cursor-pointer hover:text-[#00ffff] active:text-[#00ffff] active:scale-95 w-[10%]" onClick={()=>setpopup(false)}>✗</span>
+          <div className={` ${popup ? "flex" : "hidden"} text-white md:w-[35%] z-10 flex flex-col gap-4 justify-center md:self-center items-center p-6 relative md:left-[0%] bg-black border-2 border-[#00ffff] rounded-xl h-[70%] md:top-[40%] `}>
+            <span className="text-white text-lg self-end-safe cursor-pointer hover:text-[#00ffff] active:text-[#00ffff] active:scale-95 w-[10%]" onClick={() => setpopup(false)}>✗</span>
             <span className="font-bold text-2xl" >Thank You!</span>
             <span className="text-lg">I am very grateful to you for your message. You will receive my prompt reply soon on your email {email || ""}</span>
-            <button className="bg-[#00ffff] rounded-3xl cursor-pointer active:scale-90 p-2 text-black font-semibold " onClick={()=>setpopup(false)}>Welcome
+            <button className="bg-[#00ffff] rounded-3xl cursor-pointer active:scale-90 p-2 text-black font-semibold " onClick={() => setpopup(false)}>Welcome
             </button>
           </div>
-          <div className={`${popup ? "blur-xs":""} flex flex-col justify-center items-center w-full text-white md:w-[50%] mt-10`}>
+          <div className={`${popup ? "blur-xs" : ""} flex flex-col justify-center items-center w-full text-white md:w-[50%] mt-10`}>
             <h1 className="font-bold text-2xl mt-6">Send me your message:</h1>
             <form onSubmit={handleaddmessage} className="w-full mb-4 flex flex-col justify-center items-center">
               <div className="flex flex-col justify-center items-center gap-2 w-full">
@@ -229,7 +353,7 @@ export default function Home() {
                 <label className="font-semibold text-xl" htmlFor="name">Message:</label>
                 <textarea type="message" value={content || ""} onChange={(e) => setcontent(e.target.value)} placeholder="Enter Your Message" required className="bg-white w-[80%] nmd:w-[60%] px-1 py-2 text-black  rounded-lg outline-2 outline-[#00ffff]" />
               </div>
-              <button disabled={!name || !email || !content} className="my-4  disabled:bg-[#22abab87] bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit" onClick={()=>setpopup(true)} >Submit</button>
+              <button disabled={!name || !email || !content} className="my-4  disabled:bg-[#22abab87] bg-[#00ffff] text-black px-1 py-1 rounded-lg active:scale-95 cursor-pointer " type="submit" onClick={() => setpopup(true)} >Submit</button>
             </form>
           </div>
 

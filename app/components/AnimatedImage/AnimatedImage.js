@@ -32,13 +32,7 @@ export default function AnimatedOrbit3DFixed() {
     <div className="relative w-96 h-96 mx-auto perspective-1000">
       {/* Center Image (Fixed, larger) */}
       <div className=" relative w-fit top-[154px] left-[200px] transform -translate-z-2 -translate-x-1/2 -translate-y-1/2 z-20">
-        <Image
-          src="/me.png"
-          alt="Me"
-          width={200}
-          height={200}
-          className="rounded-full border-4 border-cyan-400 shadow-lg object-cover"
-        />
+        <Image src="/me.png" alt="Me" width={200} height={200} className="rounded-full border-4 border-cyan-400 shadow-lg object-cover"/>
       </div>
 
       {/* Orbiting Logos */}
