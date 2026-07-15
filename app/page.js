@@ -323,10 +323,10 @@ Stood out from the competition with a <span className="font-semibold">powerful p
           <h1 className="text-4xl text-white font-bold relative md:left-[40%] text-center mb-8 mt-8">Contact</h1>
 
           <div className={` ${popup ? "blur-xs" : ""} text-white w-full flex flex-col justify-center items-center md:w-[50%] px-4 py-8`}>
-            <span className="font-semibold text-lg">Contact me on <a className="text-blue-700 flex justify-center items-center gap-2 cursor-pointer" href="mailto:ali374hassan@gmail.com"><Image height={20} width={20} src={"/mail.svg"} alt="mail" /><span> Email:ali374hassan@gmail.com</span></a></span>
+            <span className="font-semibold text-lg">Contact me on <a className="text-blue-700 flex justify-center items-center gap-2 cursor-pointer" href="mailto:ali374hassan@gmail.com"><Image height={20} width={20} src={"/mail.svg"} alt="mail" /><span>Email</span></a></span>
             <div className="flex flex-col justify-center items-center gap-2">
               <span className="font-semibold text-lg">My Social Media Accounts </span>
-              <a target="_blank" className=" flex justify-center items-center gap-2 cursor-pointer" href="https://www.instagram.com/ali.hassan374?igh=NHliZjQ3dWN4bHZ4"><Image height={20} width={20} src={"/insta.svg"} alt="mail" /><span>@alihassan...374 </span></a>
+              <a target="_blank" className=" flex justify-center items-center gap-2 cursor-pointer" href="https://www.instagram.com/maskedcodingwithali/?hl=en"><Image height={20} width={20} src={"/insta.svg"} alt="mail" /><span>@alihassan...374 </span></a>
               <a target="_blank" className=" flex justify-center items-center gap-2 cursor-pointer" href="https://vt.tiktok.com/ZSfxwACv5"><Image height={20} width={20} src={"/tiktok.svg"} alt="mail" /><span>@alihassan...374 </span></a>
             </div>
           </div>
